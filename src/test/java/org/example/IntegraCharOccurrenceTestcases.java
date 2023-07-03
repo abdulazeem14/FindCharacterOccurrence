@@ -12,13 +12,13 @@ import java.util.LinkedHashMap;
 public class IntegraCharOccurrenceTestcases
 {
     @ParameterizedTest
-    @ValueSource(strings = {"apple","integra connect","DAD","engineering","Technology"})
+    @ValueSource(strings = {"apple","integra connect","DAD","engineering","Technology@1122"})
     public void upperCaseShouldBeIgnoredFindCharOccurrence(String input)
     {
         LinkedHashMap<String,Integer> occurence=new LinkedHashMap<>();
         for(int i=0;i<input.length();i++){
             int count =1;
-            if(Character.isUpperCase(input.charAt(i))){
+            if(Character.isUpperCase(input.charAt(i))||!Character.isAlphabetic(input.charAt(i))){
                 continue;
             }
             if(occurence.containsKey(String.valueOf(input.charAt(i)))){
@@ -29,7 +29,7 @@ public class IntegraCharOccurrenceTestcases
                 occurence.put(String.valueOf(input.charAt(i)),count);
             }
         }
-
+        System.out.println(IntegraCharacterOccurrence.findCharOccurrence(input));
         Assert.assertEquals(occurence, IntegraCharacterOccurrence.findCharOccurrence(input));
     }
 
